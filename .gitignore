@@ -1,0 +1,6 @@
+*.pyc
+.env
+*__pycache__/
+
+user_auth/migrations/*
+!/user_auth/migrations/__init__.py
