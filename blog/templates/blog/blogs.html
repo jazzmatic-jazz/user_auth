@@ -1,0 +1,38 @@
+{% extends "user_auth/base.html" %}
+
+{% block content %}
+    <h2>Blogs</h2>
+
+    <!-- Category Filter Form -->
+    <form method="GET">
+        <label for="categories">Select Category:</label>
+        <select name="category" id="categories" onchange="this.form.submit()">
+            <option value="all" {% if not selected_category or selected_category == "all" %}selected{% endif %}>
+                All Categories
+            </option>
+            {% for category in categories %}
+                <option value="{{ category.category }}" {% if selected_category == category.category %}selected{% endif %}>
+                    {{ category.category }}
+                </option>
+            {% endfor %}
+        </select>
+    </form>
+
+    <!-- Display Blogs -->
+    {% if blogs %}
+        {% for blog in blogs %}
+            <div class="card" style="width: 18rem;">
+                {% if blog.image %}
+                    <img src="{{ blog.image.url }}" width="200" alt="Blog Image">
+                {% endif %}
+                <div class="card-body">
+                    <h3 class="card-title">{{ blog.title }}</h3>
+                    <h6>Summary</h6>
+                    <p class="card-text">{{ blog.summary|truncatechars:15 }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No blogs found.</p>
+    {% endif %}
+{% endblock %}

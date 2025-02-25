@@ -1,20 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Index</title>
-</head>
-<body>
+{% extends "user_auth/base.html" %}
 
-    <h1>HomePage</h1>
+{% block content %}
 
     <li><a href="{% url 'logout' %}">Logout</a></li>
     <li><a href="{% url 'login' %}">Login</a></li>
     <li><a href="{% url 'register' %}">Register</a></li>
     <li><a href="{% url 'doctor' %}">Doctor</a></li>
     <li><a href="{% url 'patient' %}">Patient</a></li>
-    
-    
-</body>
-</html>
+    <li><a href="{% url 'blogs' %}">Blogs</a></li>
+    <li><a href="{% url 'doc_blog' %}">Doctor's Blog</a></li>
+    <li><a href="{% url 'create_blog' %}">Write Blog</a></li>
+
+
+{% endblock %}

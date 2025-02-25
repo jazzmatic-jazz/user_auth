@@ -1,0 +1,31 @@
+{% extends "user_auth/base.html" %}
+
+{% block content %}
+<h3>Hi Doctor {{user.first_name}}!</h3>
+<br>
+
+{% if blogs %}
+        {% for blog in blogs %}
+        
+            <div class="card" style="width: 18rem;">
+                {%if blog.is_draft%}
+                        <p><b>Draft</b></p>
+                    {%else%}
+                    <p><b>Uploaded</b></p>
+                    {%endif%}
+                {% if blog.image %}
+                    <img src="{{ blog.image.url }}" width="200" alt="Blog Image">
+                {% endif %}
+                <div class="card-body">
+                    <h3 class="card-title">{{ blog.title }}</h3>
+                    <h6>Summary</h6>
+                    <p class="card-text">{{ blog.summary|truncatechars:15 }}</p>
+                    
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No blogs found.</p>
+    {% endif %}
+    
+{% endblock %}

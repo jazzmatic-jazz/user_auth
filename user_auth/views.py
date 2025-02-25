@@ -7,7 +7,7 @@ from django.contrib import messages
 
 
 def index(request):
-    return render(request, "index.html")
+    return render(request, "user_auth/index.html")
 
 def register(request):
     if request.method == "POST":
@@ -17,7 +17,7 @@ def register(request):
             return redirect("login")
     else:
         form = UserRegisterForm()
-    return render(request, "register.html", {"form": form})
+    return render(request, "user_auth/register.html", {"form": form})
 
 
 def login_user(request):
@@ -35,7 +35,7 @@ def login_user(request):
             else:
                 messages.error(request, "Invalid user type.")
                 return redirect("login")  
-    return render(request, "login.html")
+    return render(request, "user_auth/login.html")
 
 
 def logout_view(request):
@@ -56,8 +56,8 @@ def doctor_dashboard(request):
             "email": get_user.email,
             "address": address
         }
-        return render(request, "doc_dash.html", {"user": data})
-    return render(request, "index.html")
+        return render(request, "user_auth/doc_dash.html", {"user": data})
+    return render(request, "user_auth/index.html")
 
 @login_required
 def patient_dashboard(request):
@@ -75,6 +75,6 @@ def patient_dashboard(request):
             "address": address
         }
        
-        return  render(request, "pat.html", {"user": data})
-    return render(request, "index.html")
+        return  render(request, "user_auth/pat.html", {"user": data})
+    return render(request, "user_auth/index.html")
 
